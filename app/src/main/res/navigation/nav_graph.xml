@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/animeDetailsFragment">
+
+    <fragment
+        android:id="@+id/animeDetailsFragment"
+        android:name="com.example.jikanskotlin.view.AnimeDetailsFragment"
+        android:label="fragment_anime_details"
+        tools:layout="@layout/fragment_anime_details" />
+    <fragment
+        android:id="@+id/animeSelectFragment"
+        android:name="com.example.jikanskotlin.view.AnimeSelectFragment"
+        android:label="fragment_anime_select"
+        tools:layout="@layout/fragment_anime_select" />
+</navigation>

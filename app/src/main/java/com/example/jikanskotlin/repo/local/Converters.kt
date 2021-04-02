@@ -13,18 +13,18 @@ class Converters {
     //Converter for Result object to String
     //DONT NEED type variable WHEN CONVERTING A CUSTOM OBJECT TO STRING
     @TypeConverter
-    fun resultsToString(result: Result): String? {
+    fun resultsToResult(result: List<Result>): String? {
 
-        val adapter = Moshi.Builder().build().adapter<Result>(Result::class.java)
+        val adapter = Moshi.Builder().build().adapter<List<Result>>(Result::class.java)
         return adapter.toJson(result)
     }
 
     //Converter for String to Result object
     //DONT NEED type variable WHEN CONVERTING A CUSTOM OBJECT TO STRING
     @TypeConverter
-    fun stringToResult(jsonString: String): Result? {
+    fun stringToResult(jsonString: String):List<Result>?{
 
-        val adapter = Moshi.Builder().build().adapter<Result>(Result::class.java)
+        val adapter = Moshi.Builder().build().adapter<List<Result>>(Result::class.java)
         return adapter.fromJson(jsonString)
     }
 
@@ -37,6 +37,15 @@ class Converters {
         val type = Types.newParameterizedType(List::class.java,String::class.java)
         val adapter = Moshi.Builder().build().adapter<List<String>>(type)
         return adapter.toJson(list)
+    }
+
+    //Converter for String to list
+    //ONLY NEED type variable WHEN CONVERTING A LIST<>
+    @TypeConverter
+    fun stringToList(jsonString: String): List<String>? {
+        val type = Types.newParameterizedType(List::class.java,String::class.java)
+        val adapter = Moshi.Builder().build().adapter<List<String>>(type)
+        return adapter.fromJson(jsonString)?:listOf()
     }
 
 

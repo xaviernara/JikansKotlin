@@ -9,10 +9,30 @@
         android:id="@+id/animeDetailsFragment"
         android:name="com.example.jikanskotlin.view.AnimeDetailsFragment"
         android:label="fragment_anime_details"
-        tools:layout="@layout/fragment_anime_details" />
+        tools:layout="@layout/fragment_anime_details" >
+        <argument
+            android:name="jikanResponse"
+            app:argType="com.example.jikanskotlin.model.JikanResponse" />
+    </fragment>
     <fragment
         android:id="@+id/animeSelectFragment"
         android:name="com.example.jikanskotlin.view.AnimeSelectFragment"
         android:label="fragment_anime_select"
-        tools:layout="@layout/fragment_anime_select" />
+        tools:layout="@layout/fragment_anime_select" >
+        <action
+            android:id="@+id/action_animeSelectFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+        <argument
+            android:name="search"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.jikanskotlin.view.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_animeSelectFragment"
+            app:destination="@id/animeSelectFragment" />
+    </fragment>
 </navigation>

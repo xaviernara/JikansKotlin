@@ -32,7 +32,6 @@ interface JikanService {
 
      */
 
-
     suspend fun getJikanService(@Query("q") animeName:String) : JikanResponse
 
 

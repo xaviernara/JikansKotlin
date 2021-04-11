@@ -144,8 +144,8 @@ class JikanAdapter(private val jikanResponseList: List<JikanResponse>, private v
         }*/
 
         fun setImageUrlText(imageUrl: String){
-           GlideToVectorYou.justLoadImage(binding.root.context as Activity?,imageUrl as Uri,binding.animeImage)
-
+           //GlideToVectorYou.justLoadImage(binding.root.context as Activity?,imageUrl as Uri,binding.animeImage)
+            GlideToVectorYou.justLoadImage(binding.root.context as Activity, Uri.parse(imageUrl),binding.animeImage)
         }
 
 

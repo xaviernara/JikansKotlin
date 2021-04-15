@@ -1,7 +1,8 @@
+
 package com.example.jikanskotlin.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,7 @@ import com.example.jikanskotlin.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AnimeSelectFragment : Fragment(), JikanClickListener {
+class AnimeSelectFragment : androidx.fragment.app.Fragment(), JikanClickListener {
     private lateinit var binding : FragmentAnimeSelectBinding
     private val args : AnimeSelectFragmentArgs by navArgs()
     private val viewModel by viewModels<MainViewModel> ()
@@ -38,11 +39,11 @@ class AnimeSelectFragment : Fragment(), JikanClickListener {
 
     }
 
-    fun initObservers(){
+    private fun initObservers(){
+        Log.d("search", "initObservers: ${args.search}")
         viewModel.insertAndCreateJikanResponses(args.search)
-        viewModel.getAllJikanResponses()
         viewModel.jikanResponseListLiveData.observe(viewLifecycleOwner, Observer {
-            generateJikanAdapter(it)
+              generateJikanAdapter(it)
         })
 
     }
@@ -55,6 +56,7 @@ class AnimeSelectFragment : Fragment(), JikanClickListener {
     override fun onClickListener(jikanResponse: JikanResponse) {
         viewModel.jikanResponseLiveData.observe(viewLifecycleOwner, Observer {
             val actions = AnimeSelectFragmentDirections.actionAnimeSelectFragmentToAnimeDetailsFragment(jikanResponse)
+            //val actions = AnimeSelectFragmentDirections.actionAnimeSelectFragmentToAnimeDetailsFragment()
             findNavController().navigate(actions)
         })
 

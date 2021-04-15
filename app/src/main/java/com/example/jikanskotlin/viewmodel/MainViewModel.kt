@@ -1,5 +1,6 @@
 package com.example.jikanskotlin.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.jikanskotlin.model.JikanResponse
 import com.example.jikanskotlin.repo.JikanRepo
@@ -12,16 +13,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 class MainViewModel @Inject constructor(private val jikansRepo: JikanRepo): ViewModel() {
 
     private val jikanResponseListMLD = MutableLiveData<List<JikanResponse>>()
-    private val jikanResponseLD = MutableLiveData<JikanResponse>()
+    private val jikanResponseMLD = MutableLiveData<JikanResponse>()
 
     //used for the recyclerview adaptor
-    val jikanResponseListLiveData : LiveData<List<JikanResponse>>
-        get() = jikanResponseListMLD
+    val jikanResponseListLiveData = jikansRepo.jikanFlow.asLiveData(viewModelScope.coroutineContext)
 
+    //for details fragment
     val jikanResponseLiveData : LiveData<JikanResponse>
-        get() = jikanResponseLD
-
-
+        get() = jikanResponseMLD
 
     fun getAllJikanResponses(){
         val jikanLiveData = jikansRepo.jikanFlow.asLiveData(viewModelScope.coroutineContext)
@@ -31,7 +30,9 @@ class MainViewModel @Inject constructor(private val jikansRepo: JikanRepo): View
     fun insertAndCreateJikanResponses(animeName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val jikans = jikansRepo.createJikanResponse(animeName)
+            Log.d("inside", "insertAndCreateJikanResponses: $jikans")
             jikansRepo.insertFavoriteAnime(jikans)
+            jikanResponseMLD.postValue(jikans)
         }
     }
 

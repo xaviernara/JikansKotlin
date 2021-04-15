@@ -73,7 +73,7 @@ object JikanDBModule {
     @Singleton
     fun providesRefrofitInstance(): Retrofit {
         return Retrofit.Builder().
-        baseUrl("https://api.jikan.moe/v3/search/anime")
+        baseUrl("https://api.jikan.moe/v3/search/")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(client).build()
 

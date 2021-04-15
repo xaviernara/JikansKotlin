@@ -1,6 +1,7 @@
 package com.example.jikanskotlin.adaptor
 
 import com.example.jikanskotlin.model.JikanResponse
+import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface JikanService {
@@ -32,6 +33,7 @@ interface JikanService {
 
      */
 
+    @GET("anime/")
     suspend fun getJikanService(@Query("q") animeName:String) : JikanResponse
 
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.jikanskotlin.databinding.JikanRecyclerBinding
 import com.example.jikanskotlin.model.JikanResponse
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
@@ -84,7 +85,7 @@ class JikanAdapter(private val jikanResponseList: List<JikanResponse>, private v
        /* holder.setAiringText(jikanResponseList[position].results[position].airing)
         holder.setEndDateText(jikanResponseList[position].results[position].end_date)
         holder.setEpisodeText(jikanResponseList[position].results[position].episodes)*/
-        holder.setImageUrlText(jikanResponseList[position].results[position].image_url)
+        jikanResponseList[position].results[position].image_url?.let { holder.setImageUrlText(it) }
         //holder.setRatingText(jikanResponseList[position].results[position].rated)
         holder.setScoreText(jikanResponseList[position].results[position].score)
         /*holder.setStartDateText(jikanResponseList[position].results[position].start_date)
@@ -145,7 +146,8 @@ class JikanAdapter(private val jikanResponseList: List<JikanResponse>, private v
 
         fun setImageUrlText(imageUrl: String){
            //GlideToVectorYou.justLoadImage(binding.root.context as Activity?,imageUrl as Uri,binding.animeImage)
-            GlideToVectorYou.justLoadImage(binding.root.context as Activity, Uri.parse(imageUrl),binding.animeImage)
+            //GlideToVectorYou.justLoadImage(binding.root.context as Activity?, Uri.parse(imageUrl),binding.animeImage)
+            Glide.with(binding.root).load(Uri.parse(imageUrl)).into(binding.imageView)
         }
 
 

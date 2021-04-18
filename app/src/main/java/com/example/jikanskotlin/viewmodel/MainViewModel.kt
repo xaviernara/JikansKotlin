@@ -1,5 +1,6 @@
 package com.example.jikanskotlin.viewmodel
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.jikanskotlin.model.JikanResponse
@@ -10,7 +11,7 @@ import kotlinx.coroutines.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val jikansRepo: JikanRepo): ViewModel() {
+class MainViewModel @Inject constructor(private val jikansRepo: JikanRepo, private val sharedPreferences: SharedPreferences): ViewModel() {
 
     private val jikanResponseListMLD = MutableLiveData<List<JikanResponse>>()
     private val jikanResponseMLD = MutableLiveData<JikanResponse>()
@@ -30,7 +31,7 @@ class MainViewModel @Inject constructor(private val jikansRepo: JikanRepo): View
     fun insertAndCreateJikanResponses(animeName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val jikans = jikansRepo.createJikanResponse(animeName)
-            Log.d("inside", "insertAndCreateJikanResponses: $jikans")
+            //Log.d("inside", "insertAndCreateJikanResponses: $jikans")
             jikansRepo.insertFavoriteAnime(jikans)
             jikanResponseMLD.postValue(jikans)
         }

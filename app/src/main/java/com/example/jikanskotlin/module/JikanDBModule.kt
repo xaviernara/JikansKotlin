@@ -1,6 +1,7 @@
 package com.example.jikanskotlin.module
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.jikanskotlin.adaptor.JikanService
 import com.example.jikanskotlin.repo.dao.JikanDao
@@ -22,6 +23,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object JikanDBModule {
 
+    private const val TIMESTAMP_PREF = "TIMESTAMP_PREF"
 
     @Provides
     @Singleton
@@ -79,6 +81,12 @@ object JikanDBModule {
             .client(client).build()
 
     }
+
+
+    @Provides
+    @Singleton
+    fun providesSharedPreferences(@ApplicationContext appContext: Context):
+            SharedPreferences = appContext.getSharedPreferences(TIMESTAMP_PREF, Context.MODE_PRIVATE)
 
 
 }

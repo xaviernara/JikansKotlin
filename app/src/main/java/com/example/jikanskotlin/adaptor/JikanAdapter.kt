@@ -147,13 +147,13 @@ class JikanAdapter(private val jikanResponseList: List<JikanResponse>, private v
         fun setImageUrlText(imageUrl: String){
            //GlideToVectorYou.justLoadImage(binding.root.context as Activity?,imageUrl as Uri,binding.animeImage)
             //GlideToVectorYou.justLoadImage(binding.root.context as Activity?, Uri.parse(imageUrl),binding.animeImage)
-            Glide.with(binding.root).load(Uri.parse(imageUrl)).into(binding.imageView)
+            Glide.with(binding.root).load(Uri.parse(imageUrl)).fitCenter().into(binding.imageView)
         }
 
 
         fun initOnClicks(jikanResponse: JikanResponse){
 
-            Toast.makeText(binding.root.context,"clicked",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(binding.root.context,"clicked",Toast.LENGTH_SHORT).show()
 
             binding.root.setOnClickListener(){
                 jikanClickListener.onClickListener(jikanResponse)

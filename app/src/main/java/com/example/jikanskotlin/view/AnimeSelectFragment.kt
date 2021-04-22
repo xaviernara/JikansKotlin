@@ -40,7 +40,7 @@ class AnimeSelectFragment : androidx.fragment.app.Fragment(), JikanClickListener
     }
 
     private fun initObservers(){
-        Log.d("search", "initObservers: ${args.search}")
+        //Log.d("search", "initObservers: ${args.search}")
         viewModel.insertAndCreateJikanResponses(args.search)
         viewModel.jikanResponseListLiveData.observe(viewLifecycleOwner, Observer {
               generateJikanAdapter(it)
@@ -49,7 +49,7 @@ class AnimeSelectFragment : androidx.fragment.app.Fragment(), JikanClickListener
     }
 
     private fun generateJikanAdapter(jikanResponseList: List<JikanResponse>){
-        binding.recyclerview.layoutManager = GridLayoutManager(binding.root.context,2)
+        binding.recyclerview.layoutManager = GridLayoutManager(binding.root.context,1)
         binding.recyclerview.adapter = JikanAdapter(jikanResponseList,this)
     }
 

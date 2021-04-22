@@ -84,12 +84,14 @@ class JikanAdapter(private val jikanResponseList: List<JikanResponse>, private v
 
        /* holder.setAiringText(jikanResponseList[position].results[position].airing)
         holder.setEndDateText(jikanResponseList[position].results[position].end_date)
-        holder.setEpisodeText(jikanResponseList[position].results[position].episodes)*/
+        */
+        holder.setEpisodeText(jikanResponseList[position].results[position].episodes)
         jikanResponseList[position].results[position].image_url?.let { holder.setImageUrlText(it) }
         //holder.setRatingText(jikanResponseList[position].results[position].rated)
         holder.setScoreText(jikanResponseList[position].results[position].score)
+        jikanResponseList[position].results[position].title?.let { holder.setTitleText(it) }
         /*holder.setStartDateText(jikanResponseList[position].results[position].start_date)
-        holder.setTitleText(jikanResponseList[position].results[position].title)
+
         holder.setUrlText(jikanResponseList[position].results[position].url)
         holder.setSynposisText(jikanResponseList[position].results[position].synopsis)*/
         holder.initOnClicks(jikanResponseList[position])
@@ -104,15 +106,17 @@ class JikanAdapter(private val jikanResponseList: List<JikanResponse>, private v
     RecyclerView.ViewHolder(binding.root)
     {
 
+        fun setEpisodeText(episodes: Int){
+
+            binding.episodesText.text = episodes.toString()
+        }
+
        /* fun setSynposisText(synposis: String){
 
             binding.synopsisText.text = synposis
         }
 
-        fun setEpisodeText(episodes: Int){
 
-            binding.episodesText.text = episodes.toString()
-        }
 
         fun setRatingText(rating: String){
 
@@ -136,18 +140,20 @@ class JikanAdapter(private val jikanResponseList: List<JikanResponse>, private v
             binding.airingText.text = airing.toString()
         }
 
-        fun setTitleText(title: String){
-            binding.titleText.text = title
-        }
+
 *//*
         fun setUrlText(url: String){
             binding.urlText.text = url
         }*/
 
+        fun setTitleText(title: String){
+            binding.title.text = title
+        }
+
         fun setImageUrlText(imageUrl: String){
            //GlideToVectorYou.justLoadImage(binding.root.context as Activity?,imageUrl as Uri,binding.animeImage)
             //GlideToVectorYou.justLoadImage(binding.root.context as Activity?, Uri.parse(imageUrl),binding.animeImage)
-            Glide.with(binding.root).load(Uri.parse(imageUrl)).fitCenter().into(binding.imageView)
+            Glide.with(binding.root).load(Uri.parse(imageUrl)).fitCenter().override(300,300).into(binding.animeImage)
         }
 
 
@@ -156,6 +162,7 @@ class JikanAdapter(private val jikanResponseList: List<JikanResponse>, private v
             //Toast.makeText(binding.root.context,"clicked",Toast.LENGTH_SHORT).show()
 
             binding.root.setOnClickListener(){
+                binding.starImage
                 jikanClickListener.onClickListener(jikanResponse)
             }
            /* binding.urlText.setOnClickListener(){

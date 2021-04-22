@@ -1,9 +1,6 @@
 package com.example.jikanskotlin.repo.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.jikanskotlin.model.JikanResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -12,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface JikanDao {
 
     @Query("SELECT * FROM Jikan_Response_Table")
-    fun selectAllFavoriteAnime(): Flow<List<JikanResponse>>
+    fun selectAllAnime(): Flow<List<JikanResponse>>
 
     /*
         Varargs help us avoid writing boilerplate code by introducing the new syntax that
@@ -24,8 +21,11 @@ interface JikanDao {
 
      */
 
-    @Insert
-    suspend fun insertFavoriteAnime(vararg jikanResponse: JikanResponse)
+
+
+    //INSERTS jikan responses and ignores duplicate entries
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAnime(vararg jikanResponse: JikanResponse)
 
     @Delete
     suspend fun deleteFavoriteAnime(jikanResponse: JikanResponse)

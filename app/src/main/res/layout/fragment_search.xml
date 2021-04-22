@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="15dp"
         android:hint="@string/anime_search"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         />
@@ -19,7 +20,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Jikan Anime Search"
+        android:text="@string/jikan_anime_search"
         android:textStyle="bold"
         style="@style/TextAppearance.MaterialComponents.Headline3"
         android:gravity="center_horizontal"
@@ -27,11 +28,37 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/search_button"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:background="@color/black"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="150dp"
         android:text="Search" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center|bottom"
+        android:layout_margin="55dp"
+        >
+
+        <RadioButton
+            android:id="@+id/manga_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manga"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+            android:id="@+id/nime_button"
+            android:text="Anime"/>
+
+    </RadioGroup>
+
 
 </FrameLayout>

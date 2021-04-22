@@ -16,8 +16,6 @@ import kotlinx.android.parcel.RawValue
 data class JikanResponse(
 
     //To avoid null value error add ? to String val from parsed JSON created data classes
-
-
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val last_page: Int, // 20

@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class JikanRepo  @Inject constructor(private val jikanDao: JikanDao, private val retrofit: RetrofitInstance) {
 
-    val jikanFlow = jikanDao.selectAllFavoriteAnime()
+    val jikanFlow = jikanDao.selectAllAnime()
 
-    suspend fun insertFavoriteAnime(jikanResponse: JikanResponse) = jikanDao.insertFavoriteAnime(jikanResponse)
+    suspend fun insertFavoriteAnime(jikanResponse: JikanResponse) = jikanDao.insertAnime(jikanResponse)
 
     suspend fun deleteFavoriteAnime(jikanResponse: JikanResponse) = jikanDao.deleteFavoriteAnime(jikanResponse)
 

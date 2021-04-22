@@ -50,7 +50,7 @@ class AnimeDetailsFragment : Fragment() {
         /*GlideToVectorYou.justLoadImage(binding.root.context as Activity,
             Uri.parse(args.jikanResponse!!.results[0].image_url)
             ,binding.imageView)*/
-        Glide.with(binding.root).load(Uri.parse( args.jikanResponse.results[0].image_url)).fitCenter().into(binding.animeImage)
+        Glide.with(binding.root).load(Uri.parse( args.jikanResponse.results[0].image_url)).fitCenter().override(300,300).into(binding.animeImage)
 
     }
 }
